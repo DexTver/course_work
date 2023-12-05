@@ -100,7 +100,7 @@ int main() {
         start = text[lines];
         hash_of_word = 0;
         min_line = MAXLEN_S;
-        do {
+        while (*x != '\0') {
             if (is_delimiter(*x, delimiters) == 1) {
                 if (hash_of_word != 0) {
                     for (int i = 0; i < cnt_of_keywords; ++i) {
@@ -120,7 +120,7 @@ int main() {
                 hash_of_word = (hash_of_word * t + (int) *x) % r;
             }
             ++x;
-        } while (*x != '\0');
+        }
         flag = 0;
         cnt_words_now = 0;
         for (int i = 0; i < cnt_of_keywords; ++i) {
@@ -157,9 +157,10 @@ int main() {
         printf("Processed text:\n");
         f = stdout;
     }
+
     for (int i = 0; i < lines; ++i) {
         x = text[i];
-        while (*x != '\n') {
+        while (*x != '\0') {
             if (x == min_word[i][0]) {
                 x = min_word[i][1];
                 min_word[i][0] = NULL;
@@ -167,7 +168,6 @@ int main() {
             fprintf(f, "%c", *x);
             ++x;
         }
-        fprintf(f, "\n");
     }
     fclose(f);
     return 0;
