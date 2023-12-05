@@ -88,7 +88,7 @@ int main() {
     }
 
     if (type_of_input == 'c') printf("Please enter the line of delimiter characters (limit: %i chars):\n", MAXLEN_D);
-    fgets(delimiters, MAXLEN_D, f);  // Костыль, чтобы считать \n
+    fgets(delimiters, MAXLEN_D, f);  // ГЉГ®Г±ГІГ»Г«Гј, Г·ГІГ®ГЎГ» Г±Г·ГЁГІГ ГІГј \n
     fgets(delimiters, MAXLEN_D, f);
 
     if (type_of_input == 'c') printf("Please enter the lines of text (limit of line\'s length: %i; limit\n"
@@ -108,8 +108,8 @@ int main() {
                             ++keysh[i][1];
                         }
                     }
+                    hash_of_word = 0;
                 }
-                hash_of_word = 0;
                 if (x - start != 0 && min_line > x - start) {
                     min_line = x - start;
                     min_word[lines][0] = start;
@@ -127,7 +127,7 @@ int main() {
             if (keysh[i][1] == 0) flag = 1;
             cnt_words_now += keysh[i][1];
         }
-        if (cnt_words_now == cnt_words_bef) {  // Если в строке не было кл. слов, то минимальное слово обнуляем
+        if (cnt_words_now == cnt_words_bef) {  // Г…Г±Г«ГЁ Гў Г±ГІГ°Г®ГЄГҐ Г­ГҐ ГЎГ»Г«Г® ГЄГ«. Г±Г«Г®Гў, ГІГ® Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г±Г«Г®ГўГ® Г®ГЎГ­ГіГ«ГїГҐГ¬
             min_word[lines][0] = text[lines];
             min_word[lines][1] = text[lines];
         }
