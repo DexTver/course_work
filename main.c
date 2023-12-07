@@ -115,7 +115,6 @@ int main() {
                     if (hash_of_word1 == keysh[i][0] && hash_of_word2 == keysh[i][1]) {
                         ++keysh[i][2];
                     }
-                    hash_of_word = 0;
                 }
                 if (x - start != 0 && min_line > x - start) {
                     min_line = x - start;
