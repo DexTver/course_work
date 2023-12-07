@@ -4,7 +4,8 @@
 #define HASH_B1 43  // hash base 1
 #define HASH_B2 47  // hash base 2
 #define MAXLEN_N 128  // file name
-#define MAXLEN_K 128  // keyword
+#define MAXLEN_K 128  // keyword len
+#define MAXKEYS 256  // keywords
 #define MAXLEN_D 64  // delimiters
 #define MAXLEN_S 512 // text line
 #define MAXLINES 512  // lines
@@ -33,6 +34,7 @@ int main() {
     char *x;
     long long hash_of_word1;
     long long hash_of_word2;
+    int keysh[MAXKEYS][3];
     char delimiters[MAXLEN_D];
     int flag;
     int lines;
@@ -73,12 +75,11 @@ int main() {
         f = stdin;
     }
 
-    if (type_of_input == 'c') printf("Please enter the count of keywords:\n");
+    if (type_of_input == 'c') printf("Please enter the count of keywords (limit: %i):\n", MAXKEYS);
     fscanf(f, "%i", &cnt_of_keywords);
 
-    int keysh[cnt_of_keywords][3];  // ?!
 
-    if (type_of_input == 'c') printf("Please enter the keywords:\n");
+    if (type_of_input == 'c') printf("Please enter the keywords (limit: %i chars):\n", MAXLEN_K);
     for (int i = 0; i < cnt_of_keywords; ++i) {
         fscanf(f, "%s", keyword);
         x = keyword;
@@ -95,7 +96,7 @@ int main() {
     }
 
     if (type_of_input == 'c') printf("Please enter the line of delimiter characters (limit: %i chars):\n", MAXLEN_D);
-    fgets(delimiters, MAXLEN_D, f);  // Êîñòûëü, ÷òîáû ñ÷èòàòü \n
+    fgets(delimiters, MAXLEN_D, f);
     fgets(delimiters, MAXLEN_D, f);
 
     if (type_of_input == 'c')
@@ -136,18 +137,18 @@ int main() {
             if (keysh[i][2] == 0) flag = 1;
             cnt_words_now += keysh[i][2];
         }
-        if (cnt_words_now == cnt_words_bef) {  // Åñëè â ñòðîêå íå áûëî êë. ñëîâ, òî ìèíèìàëüíîå ñëîâî îáíóëÿåì
+        if (cnt_words_now == cnt_words_bef) {
             min_word[lines][0] = text[lines];
             min_word[lines][1] = text[lines];
         }
         cnt_words_bef = cnt_words_now;
         lines++;
     }
-    fclose(f);
+    if (type_of_input == 'f') fclose(f);
 
     // Block of output
     printf("Output to file or console? (f/c)\n");
-    getchar();
+    if (type_of_input == 'f') getchar();
     type_of_output = getchar();
     while (type_of_output != 'f' && type_of_output != 'c') {
         printf("Something went wrong! Please enter \'f\' or \'c\':\n");
@@ -178,6 +179,9 @@ int main() {
             ++x;
         }
     }
-    fclose(f);
+    if (type_of_output == 'f') {
+        printf("DONE");
+        fclose(f);
+    }
     return 0;
 }
