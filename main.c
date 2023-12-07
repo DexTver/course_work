@@ -10,16 +10,7 @@
 #define MAXLEN_S 512 // text line
 #define MAXLINES 512  // lines
 
-int is_delimiter(char c, char *delimiters) {
-    char *x;
-    int ans = 0;
-    x = delimiters;
-    while (*x != '\0') {
-        if (c == *x) ans = 1;
-        ++x;
-    }
-    return ans;
-}
+int is_delimiter(char c, char *delimiters);
 
 int main() {
     // Block of variables
@@ -42,7 +33,7 @@ int main() {
     char *start;
     int min_line;
     int cnt_words_bef;  // count of found words before
-    int cnt_words_now;  //
+    int cnt_words_now;
     char *min_word[MAXLINES][2];
     char type_of_output;
 
@@ -184,4 +175,15 @@ int main() {
         fclose(f);
     }
     return 0;
+}
+
+int is_delimiter(char c, char *delimiters) {
+    char *x;
+    int ans = 0;
+    x = delimiters;
+    while (*x != '\0') {
+        if (c == *x) ans = 1;
+        ++x;
+    }
+    return ans;
 }
