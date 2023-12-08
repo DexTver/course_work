@@ -103,19 +103,22 @@ int main() {
         min_line = MAXLEN_S;
         while (*x != '\0') {
             if (is_delimiter(*x, delimiters) == 1) {
-                for (int i = 0; i < cnt_of_keywords; ++i) {
-                    if (hash_of_word1 == keysh[i][0] && hash_of_word2 == keysh[i][1]) {
-                        ++keysh[i][2];
+                if (hash_of_word1 != 0 || hash_of_word2 != 0) {
+                    for (int i = 0; i < cnt_of_keywords; ++i) {
+                        if (hash_of_word1 == keysh[i][0] && hash_of_word2 == keysh[i][1]) {
+                            ++keysh[i][2];
+                        }
                     }
+                    hash_of_word1 = 0;
+                    hash_of_word2 = 0;
                 }
+
                 if (x - start != 0 && min_line > x - start) {
                     min_line = x - start;
                     min_word[lines][0] = start;
                     min_word[lines][1] = x;
                 }
                 start = x + 1;
-                hash_of_word1 = 0;
-                hash_of_word2 = 0;
             } else {
                 hash_of_word1 = (hash_of_word1 * t + (int) *x) % r;
                 hash_of_word2 = (hash_of_word2 * b + (int) *x) % r;
