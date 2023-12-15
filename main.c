@@ -19,10 +19,10 @@ int main() {
     int t;                          /* First hash base */
     int b;                          /* Second hash base */
     char type_of_input;             /* Character variable for input type ('f' or 'c') */
-    char filename[MAXLEN_N];        /* Array to store the filename */
+    char filename[MAXLEN_N];        /* String of filename */
     FILE *f;                        /* File pointer */
     int cnt_of_keywords;            /* Count of keywords */
-    char keyword[MAXLEN_K];         /* Array to store keywords */
+    char keyword[MAXLEN_K];         /* String of keyword */
     char *x;                        /* Character pointer */
     long long hash_of_word1;        /* Long integer for first hash value */
     long long hash_of_word2;        /* Long integer for second hash value */
@@ -35,7 +35,7 @@ int main() {
     int min_line;                   /* Minimum word length in line */
     int cnt_words_bef;              /* Count of founded words before */
     int cnt_words_now;              /* Count of founded words now */
-    char *min_word[MAXLINES][2];    /* 2D array to store minimum words in each line */
+    char *min_word[MAXLINES][2];    /* 2D array to store pointers to the beginning and end of the minimum word in each line */
     char type_of_output;            /* Character variable for output type ('f' or 'c') */
 
 
