@@ -242,8 +242,9 @@ int main() {
 
 int is_delimiter(char c, char *delimiters) {
     char *x;
-    int ans = 0;
+    int ans;
     x = delimiters;
+    ans = 0;
     while (*x != '\0') {  /* Iterating until the end of delimiters */
         if (c == *x) ans = 1;
         ++x;
